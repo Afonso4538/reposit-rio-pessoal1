@@ -22,8 +22,13 @@ export default function Lista() {
         setLista(copiaLista);
     }
 
-
     return <div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/lista">Lista</a>
+        </nav>
+
+
         <main>
             <h2 style={{color: 'lightcyan'}}>Lista de tarefas</h2>
             <div className={styles.displayFlex}>

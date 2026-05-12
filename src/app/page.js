@@ -1,43 +1,48 @@
 'use client';
 
-import styles from "./page.module.css";
-import {useState} from "react";
-
-/*
-    TODO
-    Mensagem Olá só é alterada quando se clica num botão
-    Função do botão é ir buscar o que está no input e colocar na mensagem Olá
-
-    É NECESSÁRIO CRIAR UMA SEGUNDA VARIÁVEL DE ESTADO
- */
+import { useState } from "react";
+// Importa os estilos (verifica se os caminhos estão corretos no teu projeto)
+import "./page.module.css";
+import './globals.css';
 
 export default function Home() {
-    // variável de estado
-    const [name, setName] = useState("mundo!");
+    // 1. Estado para controlar o que o utilizador escreve no input (tempo real)
     const [input, setInput] = useState("");
 
-    // função
-    const atualizaMensagemOla =
-        () => { setName(input)}
+    // 2. Estado para guardar o nome que será exibido no título (apenas após o clique)
+    const [nomeExibido, setNomeExibido] = useState("mundo!");
 
     return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h2>Olá {name}</h2>
+        <>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/lista">Lista</a>
+            </nav>
 
-          <button className={styles.btnCust} onClick={
-              () => {setName("MUNDO!!!!")}
-          }>
-              Clica em mim ;)
-          </button>
+            <main>
+                {/* Aqui usamos a variável que só muda quando clicamos no botão */}
+                <h1>Olá {nomeExibido}</h1>
 
-          <button className={styles.btnCust} onClick={atualizaMensagemOla}>
-              Atualiza mensagem Olá
-          </button>
+                <div className="action-container">
+                    <button onClick={() => alert("Olá! " + input)}>
+                        Clica em mim ;)
+                    </button>
 
-          <input value={input}
-                 onChange={(evt) => setInput(evt.target.value)} />
-      </main>
-    </div>
-  );
+                    <button onClick={() => {
+                        // Quando clica, o valor do input passa para o nomeExibido
+                        setNomeExibido(input);
+                    }}>
+                        Atualiza mensagem Olá
+                    </button>
+
+                    <input
+                        type="text"
+                        value={input}
+                        placeholder="Escreve um nome..."
+                        onChange={(e) => setInput(e.target.value)}
+                    />
+                </div>
+            </main>
+        </>
+    );
 }
