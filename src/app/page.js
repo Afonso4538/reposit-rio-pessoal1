@@ -21,7 +21,7 @@ export default function Home() {
 
             <main>
                 {/* Aqui usamos a variável que só muda quando clicamos no botão */}
-                <h1>Olá {nomeExibido}</h1>
+                <h1>Olá Afonso Trindade nº28292 aluno28292@ipt.pt</h1>
 
                 <div className="action-container">
                     <button onClick={() => alert("Olá! " + input)}>
